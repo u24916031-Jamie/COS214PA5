@@ -1,13 +1,18 @@
 #ifndef RESOLVED_H
 #define RESOLVED_H
 
-class Resolved : Condition {
+
+#include "Condition.h"
+#include "Incident.h"
+#include <string>
+
+class Resolved : public Condition {
 
 
 public:
-	void handle(Incident* incident);
+	std::string printConditionName();
 
-	void advance();
+	void advance(Incident* incident);
 };
 
 #endif

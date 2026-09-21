@@ -1,11 +1,10 @@
 #include "Reported.h"
+#include "BeingWorkedOn.h"
 
-void Reported::handle(Incident* incident) {
-	// TODO - implement Reported::handle
-	throw "Not yet implemented";
+std::string Reported::printConditionName() {
+	return "Reported.";
+
 }
-
-void Reported::advance() {
-	// TODO - implement Reported::advance
-	throw "Not yet implemented";
+void Reported::advance(Incident* incident) {
+	incident->setCondition(new BeingWorkedOn());
 }

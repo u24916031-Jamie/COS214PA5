@@ -1,11 +1,9 @@
 #include "UnderControl.h"
+#include "Resolved.h"
+std::string UnderControl::printConditionName() {
+	return "Under control.";
 
-void UnderControl::handle(Incident* incident) {
-	// TODO - implement UnderControl::handle
-	throw "Not yet implemented";
 }
-
-void UnderControl::advance() {
-	// TODO - implement UnderControl::advance
-	throw "Not yet implemented";
+void UnderControl::advance(Incident* incident) {
+incident->setCondition(new Resolved());
 }
