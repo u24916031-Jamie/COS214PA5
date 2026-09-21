@@ -1,13 +1,16 @@
 #ifndef BEINGWORKEDON_H
 #define BEINGWORKEDON_H
 
-class BeingWorkedOn : Condition {
+#include "Incident.h"
+#include <string>
+
+class BeingWorkedOn : public Condition {
 
 
 public:
-	void handle(Incident* incident);
+	std::string printConditionName();
 
-	void advance();
+	void advance(Incident* incident);
 };
 
 #endif

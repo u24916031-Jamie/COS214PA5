@@ -1,13 +1,19 @@
 #ifndef UNDERCONTROL_H
 #define UNDERCONTROL_H
 
-class UnderControl : Condition {
+#include "Condition.h"
+#include "Incident.h"
+
+#include <string>
+
+
+class UnderControl : public Condition {
 
 
 public:
-	void handle(Incident* incident);
+	std::string printConditionName();
 
-	void advance();
+	void advance(Incident* incident);
 };
 
 #endif

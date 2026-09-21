@@ -1,13 +1,15 @@
 #ifndef CONDITION_H
 #define CONDITION_H
 
+#include <string>
+
 class Condition {
 
 
 public:
-	virtual void handle(Incident* incident) = 0;
+	virtual std::string printConditionName() = 0;
 
-	virtual void advance() = 0;
+	virtual void advance(Incident* incident) = 0;
 };
 
 #endif

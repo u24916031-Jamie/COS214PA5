@@ -1,13 +1,18 @@
 #ifndef REPORTED_H
 #define REPORTED_H
 
-class Reported : Condition {
+#include "Condition.h"
+#include "Incident.h"
+
+#include <string>
+
+class Reported : public Condition {
 
 
 public:
-	void handle(Incident* incident);
+	std::string printConditionName();
 
-	void advance();
+	void advance(Incident* incident);
 };
 
 #endif
