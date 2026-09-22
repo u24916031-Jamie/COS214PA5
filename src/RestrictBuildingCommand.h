@@ -1,10 +1,14 @@
 #ifndef RESTRICTBUILDINGCOMMAND_H
 #define RESTRICTBUILDINGCOMMAND_H
 
-class RestrictBuildingCommand : BuildingCommand {
+#include "BuildingCommand.h"
+#include "BuildingAccessInterface.h"
+
+class RestrictBuildingCommand : BuildingCommand
+{
 
 public:
-	BuildingAccessInterface* accessSystem;
+	BuildingAccessInterface *accessSystem;
 
 	void execute();
 };
