@@ -2,6 +2,8 @@
 #define CONDITION_H
 
 #include <string>
+class Incident;
+
 
 class Condition {
 

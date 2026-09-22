@@ -1,6 +1,8 @@
 #ifndef CAMPUSGUARDFACADE_H
 #define CAMPUSGUARDFACADE_H
 
+#include "CampusEmergencyCoordinator.h"
+
 class CampusGuardFacade {
 
 private:

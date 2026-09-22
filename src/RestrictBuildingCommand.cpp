@@ -1,5 +1,6 @@
 #include "RestrictBuildingCommand.h"
+#include "RestrictedState.h"
 
 void RestrictBuildingCommand::execute() {
-	accessSystem->restrictAccess();
+	accessSystem->setState(new RestrictedState());
 }

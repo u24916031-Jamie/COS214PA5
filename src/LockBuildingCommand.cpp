@@ -1,5 +1,6 @@
 #include "LockBuildingCommand.h"
+#include "LockedState.h"
 
 void LockBuildingCommand::execute() {
-	accessSystem->lockBuilding();
+	accessSystem->setState(new LockedState());
 }

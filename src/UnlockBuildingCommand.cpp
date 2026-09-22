@@ -1,5 +1,5 @@
 #include "UnlockBuildingCommand.h"
-
+#include "UnlockedState.h"
 void UnlockBuildingCommand::execute() {
-	accessSystem->unlockBuilding();
+	accessSystem->setState(new UnlockedState());
 }

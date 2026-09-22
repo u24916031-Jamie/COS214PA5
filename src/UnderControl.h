@@ -11,9 +11,9 @@ class UnderControl : public Condition {
 
 
 public:
-	std::string printConditionName();
+	std::string printConditionName() override;
 
-	void advance(Incident* incident);
+	void advance(Incident* incident) override;
 };
 
 #endif
