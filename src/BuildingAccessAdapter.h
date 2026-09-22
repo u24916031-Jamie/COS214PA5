@@ -1,13 +1,16 @@
 #ifndef BUILDINGACCESSADAPTER_H
 #define BUILDINGACCESSADAPTER_H
 
-class BuildingAccessAdapter : BuildingAccessInterface, LegacyAccessSystem {
+#include "BuildingAccessInterface.h"
+#include "LegacyAccessSystem.h"
+
+class BuildingAccessAdapter : public BuildingAccessInterface, public LegacyAccessSystem {
 
 
 public:
-	void lockBuilding();
+	void lock();
 
-	void unlockBuilding();
+	void unlock();
 
 	void restrictAccess();
 };

@@ -1,12 +1,16 @@
 #ifndef UNLOCKBUILDINGCOMMAND_H
 #define UNLOCKBUILDINGCOMMAND_H
 
+#include "BuildingCommand.h"
+#include "BuildingAccessInterface.h"
+
 class UnlockBuildingCommand : BuildingCommand {
 
-public:
-	BuildingAccessInterface* accessSystem;
+private:
+	BuildingAccessInterface *accessSystem;
 
-	void execute();
+public:
+	void execute() override;
 };
 
 #endif

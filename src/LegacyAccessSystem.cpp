@@ -1,16 +1,17 @@
 #include "LegacyAccessSystem.h"
 
-void LegacyAccessSystem::activateBuildingLockdown() {
-	// TODO - implement LegacyAccessSystem::activateBuildingLockdown
-	throw "Not yet implemented";
+LegacyAccessSystem::LegacyAccessSystem(){
+	state = FULL_ACCESS;
 }
 
-void LegacyAccessSystem::releaseBuildingLockdown() {
-	// TODO - implement LegacyAccessSystem::releaseBuildingLockdown
-	throw "Not yet implemented";
+void LegacyAccessSystem::fullAccess() {
+	state = FULL_ACCESS;
 }
 
-void LegacyAccessSystem::setBuildingAccessLevel() {
-	// TODO - implement LegacyAccessSystem::setBuildingAccessLevel
-	throw "Not yet implemented";
+void LegacyAccessSystem::noAccess() {
+	state = NO_ACCESS;
+}
+
+void LegacyAccessSystem::maintenanceAccess() {
+	state = PARTIAL_ACCESS;
 }
