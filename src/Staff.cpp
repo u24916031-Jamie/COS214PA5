@@ -5,10 +5,10 @@ Staff::Staff(){
 	mediator = nullptr;
 }
 
-~Staff::Staff(){
+Staff::~Staff(){
 }
 
-void Staff::setMediator(StaffMediatorr* m) {
+void Staff::setMediator(StaffMediator* m) {
 	mediator = m;
 	
 }

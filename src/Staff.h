@@ -15,11 +15,11 @@ public:
 
 	virtual ~Staff();
 
-	virtual void setMediator(StaffMediatorr* m);
+	virtual void setMediator(StaffMediator* m);
 
-	virtual vvoid sendUpdate(string event) = 0;
+	virtual void sendUpdate(const std::string& event) = 0;
 
-	virtual vvoid receiveUpdate(string event) = 0;
+	virtual void receiveUpdate(const std::string& event) = 0;
 };
 
 #endif

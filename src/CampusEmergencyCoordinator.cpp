@@ -1,9 +1,9 @@
 #include "CampusEmergencyCoordinator.h"
 
-CampusEmergencyCoordinator(SecurityService security,
-							MedicalService medical,
-							FacilityService facility,
-							CommunicationService communication,)
+CampusEmergencyCoordinator::CampusEmergencyCoordinator(SecurityService* security,
+							MedicalService* medical,
+							FacilityService* facility,
+							CommunicationService* communication)
 							{
 								securityService = security;
 								medicalService = medical;

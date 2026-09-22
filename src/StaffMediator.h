@@ -10,7 +10,7 @@ class StaffMediator {
 
 public:
 	virtual ~StaffMediator();
-	virtual void notify(Staff* sender, string event) = 0;
+	virtual void notify(Staff* sender, const std::string& event) = 0;
 };
 
 #endif
