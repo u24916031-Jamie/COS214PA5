@@ -1,7 +1,15 @@
 #ifndef CAMPUSEMERGENCYCOORDINATOR_H
 #define CAMPUSEMERGENCYCOORDINATOR_H
 
-class CampusEmergencyCoordinator : StaffMediator {
+#include "StaffMediator.h"
+#include <string>
+
+class SecurityService;
+class MedicalService;
+class FacilityService;
+class CommunicationService;
+
+class CampusEmergencyCoordinator : public StaffMediator {
 
 private:
 	SecurityService* securityService;
@@ -10,7 +18,12 @@ private:
 	CommunicationService* communicationService;
 
 public:
-	void notify(Staff* sender, string event);
+	CampusEmergencyCoordinator(SecurityService* security,
+								MedicalService* medical,
+								FacilityService* facility,
+								CommunicationService* communication);
+
+	void notify(Staff* sender, const std::string& event) override;
 };
 
 #endif

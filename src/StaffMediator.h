@@ -1,11 +1,16 @@
 #ifndef STAFFMEDIATOR_H
 #define STAFFMEDIATOR_H
 
+#include <string>
+
+class Staff;
+
 class StaffMediator {
 
 
 public:
-	void notify(Staff* sender, string event);
+	virtual ~StaffMediator();
+	virtual void notify(Staff* sender, const std::string& event) = 0;
 };
 
 #endif
