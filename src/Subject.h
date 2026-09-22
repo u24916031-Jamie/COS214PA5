@@ -1,12 +1,12 @@
-#ifndef INCIDENTSUBJECT_H
-#define INCIDENTSUBJECT_H
+#ifndef SUBJECT_H
+#define SUBJECT_H
 
 #include "Observer.h"
 #include <vector>
 
-class IncidentSubject {
+class Subject {
 
-private:
+protected:
 	std::vector<Observer*> observers;
 
 public:
@@ -14,7 +14,7 @@ public:
 
 	void detach(Observer* observer);
 
-	void notify();
+	virtual void notify() = 0;
 };
 
 #endif

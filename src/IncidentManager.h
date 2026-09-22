@@ -12,6 +12,7 @@ private:
 	std::queue<Incident*> incidentQueue;
 
 public:
+	IncidentManager(int incidentCount);
 	void update(Incident* incident);
 
 	void addIncident(Incident* incident);

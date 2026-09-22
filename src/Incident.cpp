@@ -1,5 +1,6 @@
 #include "Incident.h"
 #include "Reported.h"
+#include <iostream>
 
 int Incident::globalIncidentId = 1;
 
@@ -23,6 +24,7 @@ Condition* Incident::getCondition() {
 void Incident::advance() {
 	if (this->condition){
 		condition->advance(this);
+		std::cout << "Incident " << getDescription() << " with id " << getId() << " has entered the following state: " << condition->printConditionName() << std::endl;
 	}
 }
 
@@ -34,4 +36,12 @@ int Incident::getId()
 std::string Incident::getDescription()
 {
     return description;
+}
+
+
+
+void Incident::notify() {
+	for (auto obs : observers){
+		obs->update(this);
+	}
 }

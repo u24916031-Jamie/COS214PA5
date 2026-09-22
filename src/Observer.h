@@ -1,13 +1,13 @@
 #ifndef OBSERVER_H
 #define OBSERVER_H
 
-#include "Incident.h"
+#include "Subject.h"
 
 class Observer {
 
 
 public:
-	void update(Incident* incident);
+	virtual void update(Subject* incident) = 0;
 };
 
 #endif
