@@ -9,7 +9,7 @@ class LockBuildingCommand : BuildingCommand {
 public:
 	BuildingAccessInterface* accessSystem;
 
-	void execute();
+	void execute() override;
 };
 
 #endif
