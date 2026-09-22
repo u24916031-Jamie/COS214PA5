@@ -1,11 +1,12 @@
 #include "FacilitySevice.h"
+#include "StaffMediator.h"
 
-void FacilitySevice::sendUpdate(string event) {
-	// TODO - implement FacilitySevice::sendUpdate
-	throw "Not yet implemented";
+void FacilitySevice::sendUpdate(const string&  event) {
+	if(mediator){
+		mediator->notify(this, event);
+	}
 }
 
-void FacilitySevice::receiveUpdate(string event) {
-	// TODO - implement FacilitySevice::receiveUpdate
-	throw "Not yet implemented";
+void FacilitySevice::receiveUpdate(const string&  event) {
+	std::cout << "[Facility] " << event << std::endl;
 }

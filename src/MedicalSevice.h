@@ -1,13 +1,13 @@
 #ifndef MEDICALSEVICE_H
 #define MEDICALSEVICE_H
 
-class MedicalSevice : Staff {
+class MedicalSevice : public Staff {
 
 
 public:
-	void sendUpdate(string event);
+	void sendUpdate(const string& event);
 
-	void receiveUpdate(string event);
+	void receiveUpdate(const string& event);
 };
 
 #endif

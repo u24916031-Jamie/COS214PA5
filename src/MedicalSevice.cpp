@@ -1,11 +1,12 @@
 #include "MedicalSevice.h"
+#include "StaffMediator.h"
 
-void MedicalSevice::sendUpdate(string event) {
-	// TODO - implement MedicalSevice::sendUpdate
-	throw "Not yet implemented";
+void MedicalSevice::sendUpdate(const string&  event) {
+	if(mediator){
+		mediator->notify(this, event);
+	}
 }
 
-void MedicalSevice::receiveUpdate(string event) {
-	// TODO - implement MedicalSevice::receiveUpdate
-	throw "Not yet implemented";
+void MedicalSevice::receiveUpdate(const string&  event) {
+	std::cout << "[Medical] " << event << std::endl;
 }

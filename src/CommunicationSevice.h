@@ -1,13 +1,13 @@
 #ifndef COMMUNICATIONSEVICE_H
 #define COMMUNICATIONSEVICE_H
 
-class CommunicationSevice : Staff {
+class CommunicationSevice : public Staff {
 
 
 public:
-	void sendUpdate(string event);
+	void sendUpdate(const string& event);
 
-	void receiveUpdate(string event);
+	void receiveUpdate(const string& event);
 };
 
 #endif

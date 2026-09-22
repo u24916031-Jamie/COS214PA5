@@ -1,11 +1,12 @@
 #include "CommunicationSevice.h"
+#include "StaffMediator.h"
 
-void CommunicationSevice::sendUpdate(string event) {
-	// TODO - implement CommunicationSevice::sendUpdate
-	throw "Not yet implemented";
+void CommunicationSevice::sendUpdate(const string&  event) {
+	if(mediator){
+		mediator->notify(this, event);
+	}
 }
 
-void CommunicationSevice::receiveUpdate(string event) {
-	// TODO - implement CommunicationSevice::receiveUpdate
-	throw "Not yet implemented";
+void CommunicationSevice::receiveUpdate(const string&  event) {
+	std::cout << "[Communication] " << event << std::endl;
 }

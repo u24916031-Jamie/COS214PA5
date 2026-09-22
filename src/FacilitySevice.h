@@ -1,13 +1,13 @@
 #ifndef FACILITYSEVICE_H
 #define FACILITYSEVICE_H
 
-class FacilitySevice : Staff {
+class FacilitySevice : public Staff {
 
 
 public:
-	void sendUpdate(string event);
+	void sendUpdate(const string& event);
 
-	void receiveUpdate(string event);
+	void receiveUpdate(const string& event);
 };
 
 #endif

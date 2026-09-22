@@ -1,13 +1,15 @@
 #ifndef SECURITYSEVICE_H
 #define SECURITYSEVICE_H
 
-class SecuritySevice : Staff {
+#include "Staff.h"
+
+class SecuritySevice : public Staff {
 
 
 public:
-	void sendUpdate(string event);
+	void sendUpdate(const string& event) override;
 
-	void receiveUpdate(string event);
+	void receiveUpdate(const string& event) override;
 };
 
 #endif
