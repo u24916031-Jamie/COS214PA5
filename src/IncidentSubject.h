@@ -1,10 +1,13 @@
 #ifndef INCIDENTSUBJECT_H
 #define INCIDENTSUBJECT_H
 
+#include "Observer.h"
+#include <vector>
+
 class IncidentSubject {
 
 private:
-	vector<Observer*> observers;
+	std::vector<Observer*> observers;
 
 public:
 	void attach(Observer* observer);
