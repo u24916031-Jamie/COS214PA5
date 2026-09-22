@@ -7,9 +7,10 @@
 class RestrictBuildingCommand : BuildingCommand
 {
 
-public:
+private:
 	BuildingAccessInterface *accessSystem;
 
+public:
 	void execute() override;
 };
 

@@ -6,9 +6,10 @@
 
 class UnlockBuildingCommand : BuildingCommand {
 
-public:
-	BuildingAccessInterface* accessSystem;
+private:
+	BuildingAccessInterface *accessSystem;
 
+public:
 	void execute() override;
 };
 

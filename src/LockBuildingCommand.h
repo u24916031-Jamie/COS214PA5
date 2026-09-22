@@ -6,9 +6,10 @@
 
 class LockBuildingCommand : BuildingCommand {
 
-public:
-	BuildingAccessInterface* accessSystem;
+private:
+	BuildingAccessInterface *accessSystem;
 
+public:
 	void execute() override;
 };
 
