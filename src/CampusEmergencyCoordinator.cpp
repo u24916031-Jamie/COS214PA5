@@ -1,4 +1,8 @@
 #include "CampusEmergencyCoordinator.h"
+#include "MedicalService.h"
+#include "FacilityService.h"
+#include "CommunicationService.h"
+#include "SecurityService.h"
 
 CampusEmergencyCoordinator::CampusEmergencyCoordinator(SecurityService* security,
 							MedicalService* medical,

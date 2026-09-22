@@ -3,7 +3,7 @@ CXX      := g++
 SUBDIRS  := 
 INC_FLAGS := $(addprefix -Isrc/, $(SUBDIRS))
 CXXFLAGS  := -Wall -Wextra -std=c++11 -I. -Isrc $(INC_FLAGS)
-TARGET   := taskforge
+TARGET   := campusGuard
 TARGETTEST   := $(addprefix $(TARGET), test)
 
 
@@ -16,7 +16,7 @@ ZIP_NAME=prac.zip
 
 	
 
-all: $(TARGET)
+all: $(TARGET) $(SRCS)
 
 $(TARGET):
 	$(CXX) $(CXXFLAGS) $(SRCS) -o $@

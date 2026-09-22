@@ -10,6 +10,7 @@ protected:
 	BuildingState* state;
 
 public:
+BuildingAccessInterface();
 	void setState(BuildingState* x);
 };
 

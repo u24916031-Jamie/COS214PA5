@@ -26,6 +26,7 @@ public:
 	int getId();
 	std::string getDescription();
 	void notify();
+	~Incident();
 };
 
 #endif
