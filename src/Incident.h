@@ -1,11 +1,16 @@
 #ifndef INCIDENT_H
 #define INCIDENT_H
 
-class Incident : IncidentSubject {
+#include <string>
+#include "IncidentSubject.h"
+#include "Condition.h"
+
+
+class Incident : public IncidentSubject {
 
 private:
 	int incidentId;
-	string description;
+	std::string description;
 	Condition* condition;
 
 public:

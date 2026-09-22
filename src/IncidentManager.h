@@ -1,11 +1,15 @@
 #ifndef INCIDENTMANAGER_H
 #define INCIDENTMANAGER_H
 
-class IncidentManager : Observer {
+#include "Incident.h"
+#include "Observer.h"
+#include <queue>
+
+class IncidentManager : public Observer {
 
 private:
 	int activeIncidentsCount;
-	Queue<Incident*> incidentQueue;
+	std::queue<Incident*> incidentQueue;
 
 public:
 	void update(Incident* incident);
