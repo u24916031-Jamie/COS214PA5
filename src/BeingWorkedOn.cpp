@@ -1,11 +1,12 @@
 #include "BeingWorkedOn.h"
+#include "UnderControl.h"
 
-void BeingWorkedOn::handle(Incident* incident) {
-	// TODO - implement BeingWorkedOn::handle
-	throw "Not yet implemented";
+std::string BeingWorkedOn::printConditionName() {
+	return "Being worked on.";
+
 }
 
-void BeingWorkedOn::advance() {
-	// TODO - implement BeingWorkedOn::advance
-	throw "Not yet implemented";
+void BeingWorkedOn::advance(Incident* incident) {
+	incident->setCondition(new UnderControl());
+
 }
