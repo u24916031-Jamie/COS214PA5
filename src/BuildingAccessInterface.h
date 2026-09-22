@@ -1,23 +1,16 @@
-#ifndef BUILDINGACCESSINTERFACE_H
-#define BUILDINGACCESSINTERFACE_H
+#ifndef BuildingAccessInterface_H
+#define BuildingAccessInterface_H
 
-#include "LockedState.h"
+#include "BuildingState.h"
 #include "UnlockedState.h"
-#include "RestrictedState.h"
 
-class BuildingAccessInterface
-{
-private:
-	BuildingState *state;
+class BuildingAccessInterface {
+
+protected:
+	BuildingState* state;
 
 public:
-	BuildingAccessInterface();
-
-	void unlockBuilding();
-
-	void lockBuilding();
-
-	void restrictAccess();
+	void setState(BuildingState* x);
 };
 
 #endif

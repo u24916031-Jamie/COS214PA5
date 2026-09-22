@@ -4,17 +4,7 @@ BuildingAccessInterface::BuildingAccessInterface(){
 	state = new UnlockedState();
 }
 
-void BuildingAccessInterface::unlockBuilding() {
+void BuildingAccessInterface::setState(BuildingState* x){
 	delete state;
-	state = new UnlockedState();
-}
-
-void BuildingAccessInterface::lockBuilding() {
-	delete state;
-	state = new LockedState();
-}
-
-void BuildingAccessInterface::restrictAccess() {
-	delete state;
-	state = new RestrictedState();
+	state = x;
 }
