@@ -1,14 +1,14 @@
 #ifndef INCIDENT_H
 #define INCIDENT_H
 
-#include "IncidentSubject.h"
+#include "Subject.h"
 #include "Condition.h"
 #include <string>
 
 
 
 
-class Incident : public IncidentSubject {
+class Incident : public Subject {
 
 private:
 	static int globalIncidentId;
@@ -25,6 +25,7 @@ public:
 	void advance();
 	int getId();
 	std::string getDescription();
+	void notify();
 };
 
 #endif
