@@ -1,17 +1,25 @@
 #ifndef STAFF_H
 #define STAFF_H
 
+#include <string>
+
+class StaffMediator;
+
 class Staff {
 
-private:
+protected:
 	StaffMediator* mediator;
 
 public:
-	void setMediator(StaffMediatorr* m);
+	Staff();
 
-	void sendUpdate(string event);
+	virtual ~Staff();
 
-	void receiveUpdate(string event);
+	virtual void setMediator(StaffMediatorr* m);
+
+	virtual vvoid sendUpdate(string event) = 0;
+
+	virtual vvoid receiveUpdate(string event) = 0;
 };
 
 #endif
