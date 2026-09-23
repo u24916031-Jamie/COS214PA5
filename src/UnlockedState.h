@@ -10,7 +10,7 @@ private:
 public:
     UnlockedState(/* args */);
     ~UnlockedState() override;
-    virtual bool UnlockedState::allowAccess(char d);
+    bool UnlockedState::allowAccess(Staff* x) override;
 };
 
 #endif

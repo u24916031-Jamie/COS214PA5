@@ -1,12 +1,14 @@
 #ifndef BUILDINGSTATE_H
 #define BUILDINGSTATE_H
 
+#include "Staff.h"
+
 class BuildingState {
 
 public:
     BuildingState();
     virtual ~BuildingState() = default;
-    virtual bool allowAccess(char d) = 0;
+    virtual bool allowAccess(Staff* x) = 0;
 };
 
 #endif

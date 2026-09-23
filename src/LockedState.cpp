@@ -8,6 +8,6 @@ LockedState::~LockedState()
 {
 }
 
-bool LockedState::allowAccess(char d){
+bool LockedState::allowAccess(Staff* x){
     return false;
 }

@@ -8,6 +8,6 @@ UnlockedState::~UnlockedState()
 {
 }
 
-bool UnlockedState::allowAccess(char d){
+bool UnlockedState::allowAccess(Staff* x){
 	return true;
 }

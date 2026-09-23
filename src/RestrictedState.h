@@ -10,7 +10,7 @@ private:
 public:
     RestrictedState(/* args */);
     ~RestrictedState() override;
-    virtual bool RestrictedState::allowAccess(char d);
+    bool RestrictedState::allowAccess(Staff* x) override;
 };
 
 

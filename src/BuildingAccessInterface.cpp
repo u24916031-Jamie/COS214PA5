@@ -14,12 +14,6 @@ void BuildingAccessInterface::setState(BuildingState* x){
 	state = x;
 }
 
-bool BuildingAccessInterface::enter(char userPrefix){
-	bool allowed = state->allowAccess(userPrefix);
-
-	// if (allowed){
-	// 	cout << "You can enter\n";
-	// }
-	
-	return allowed;
+bool BuildingAccessInterface::enter(Staff* x){
+	state->allowAccess(x);
 }

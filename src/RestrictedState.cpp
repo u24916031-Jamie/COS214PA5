@@ -8,9 +8,6 @@ RestrictedState::~RestrictedState()
 {
 }
 
-bool RestrictedState::allowAccess(char d){
-    if (d = 'm'){
-        return true;
-    }
-    return false;
+bool RestrictedState::allowAccess(Staff* x){
+    return x->restrictedAccessPermission();
 }
