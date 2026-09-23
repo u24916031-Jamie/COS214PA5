@@ -17,6 +17,7 @@ Incident::Incident(std::string description)
 
 void Incident::setCondition(Condition *condition)
 {
+	delete this->condition;
     this->condition = condition;
 }
 
@@ -55,6 +56,7 @@ void Incident::notify() {
 Incident::~Incident()
 {
 	for (auto obs : observers){
+		delete condition;
 		if (IncidentManager* im = dynamic_cast<IncidentManager*>(obs)){
 			im->removeIncident(this);
 		}

@@ -17,6 +17,7 @@ CampusEmergencyCoordinator::CampusEmergencyCoordinator(SecurityService* security
 							}
 
 void CampusEmergencyCoordinator::notify(Staff* sender, const std::string& event){
+    (void)sender;
     if(event == "FireDetected")
     {
         medicalService->receiveUpdate(
