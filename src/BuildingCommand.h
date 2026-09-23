@@ -10,7 +10,7 @@ protected:
 
 public:
 	BuildingCommand(BuildingAccessInterface* accessSystem);
-	virtual ~BuildingCommand() = default;
+	virtual ~BuildingCommand() = 0;
 	virtual void execute() = 0;
 };
 
