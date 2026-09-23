@@ -1,21 +1,17 @@
 #include "LegacyAccessSystem.h"
 
 LegacyAccessSystem::LegacyAccessSystem(){
-	buildingState = FULL_ACCESS;
+	state = FULL_ACCESS;
 }
 
 void LegacyAccessSystem::fullAccess() {
-	buildingState = FULL_ACCESS;
+	state = FULL_ACCESS;
 }
 
 void LegacyAccessSystem::noAccess() {
-	buildingState = NO_ACCESS;
+	state = NO_ACCESS;
 }
 
 void LegacyAccessSystem::maintenanceAccess() {
-	buildingState = PARTIAL_ACCESS;
-}
-
-LegacyAccessSystem::~LegacyAccessSystem(){
-
+	state = PARTIAL_ACCESS;
 }

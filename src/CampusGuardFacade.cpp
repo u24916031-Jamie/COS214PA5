@@ -2,10 +2,13 @@
 
 #include <iostream>
 
-CampusGuardFacade::CampusGuardFacade(CampusEmergencyCoordinator* coordinator, LockBuildingCommand* lockCommand,
+CampusGuardFacade::CampusGuardFacade( SecurityService* securityService, 
+	MedicalService* medicalService,CommunicationService* communicationService, LockBuildingCommand* lockCommand,
     UnlockBuildingCommand* unlockCommand, RestrictBuildingCommand* restrictCommand){
 
-    this->coordinator = coordinator;
+    this->securityService = securityService;
+    this->medicalService = medicalService;
+    this->communicationService = communicationService;
     this->lockCommand = lockCommand;
     this->unlockCommand = unlockCommand;
     this->restrictCommand = restrictCommand;
@@ -16,7 +19,7 @@ void CampusGuardFacade::coordinateMassEvacuation(){
 
     restrictCommand->execute();
 
-    coordinator->notify(nullptr, "FireDetected");
+    securityService->sendUpdate("FireDetected");
 }
 
 void CampusGuardFacade::coordinateBuildingLockdown(){
@@ -24,13 +27,13 @@ void CampusGuardFacade::coordinateBuildingLockdown(){
 
     lockCommand->execute();
 
-    coordinator->notify( nullptr, "IntruderDetected");
+    securityService->sendUpdate("IntruderDetected");
 }
 
 void CampusGuardFacade::coordinateMedicalResponse(){
     std::cout << "\n=== MEDICAL RESPONSE INITIATED ===" << std::endl;
 
-    coordinator->notify(nullptr, "MedicalEmergency");
+    medicalService->sendUpdate("MedicalEmergency");
 }
 
 void CampusGuardFacade::resolveIncident(){
@@ -38,5 +41,5 @@ void CampusGuardFacade::resolveIncident(){
 
     unlockCommand->execute();
 
-    coordinator->notify(nullptr, "AllClear");
+    communicationService->sendUpdate("AllClear");
 }

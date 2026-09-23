@@ -13,10 +13,6 @@ public:
 	void unlock();
 
 	void restrictAccess();
-
-	BuildingAccessAdapter();
-	
-	virtual ~BuildingAccessAdapter();
 };
 
 #endif

@@ -44,7 +44,7 @@ int main()
     RestrictBuildingCommand restrictCommand(&accessSystem);
 
     // Facade Setup
-    CampusGuardFacade facade(&coordinator, &lockCommand, &unlockCommand, &restrictCommand);
+    CampusGuardFacade facade(&security, &medical, &communication, &lockCommand, &unlockCommand, &restrictCommand);
 
     // Observer + State Setup
     IncidentManager incidentManager(3);

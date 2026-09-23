@@ -10,7 +10,7 @@ enum Bstate {NO_ACCESS, FULL_ACCESS, PARTIAL_ACCESS};
 class LegacyAccessSystem
 {
 protected:
-	Bstate buildingState;
+	Bstate state;
 
 public:
 	LegacyAccessSystem();
@@ -20,8 +20,6 @@ public:
 	void noAccess();
 
 	void maintenanceAccess();
-
-	virtual ~LegacyAccessSystem();
 };
 
 #endif
