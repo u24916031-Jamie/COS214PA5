@@ -1,7 +1,7 @@
 #include "LockBuildingCommand.h"
 #include "LockedState.h"
 
-LockBuildingCommand::LockBuildingCommand() : BuildingCommand()
+LockBuildingCommand::LockBuildingCommand(BuildingAccessInterface* accessSystem) : BuildingCommand(accessSystem)
 {
 }
 

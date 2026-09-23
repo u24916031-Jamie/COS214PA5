@@ -9,7 +9,7 @@
 class CampusGuardFacade {
 
 private:
-	CampusEmergencyCoordinator coordinator;
+	CampusEmergencyCoordinator* coordinator;
 	LockBuildingCommand* lockCommand;
     UnlockBuildingCommand* unlockCommand;
     RestrictBuildingCommand* restrictCommand;

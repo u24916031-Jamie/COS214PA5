@@ -1,7 +1,7 @@
 #include "BuildingCommand.h"
 
-BuildingCommand::BuildingCommand(){
-	
+BuildingCommand::BuildingCommand(BuildingAccessInterface* accessSystem){
+	this->accessSystem = accessSystem;
 }
 
 void BuildingCommand::execute() {

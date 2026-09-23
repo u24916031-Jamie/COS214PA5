@@ -4,7 +4,7 @@ void UnlockBuildingCommand::execute() {
 	accessSystem->setState(new UnlockedState());
 }
 
-UnlockBuildingCommand::UnlockBuildingCommand() : BuildingCommand(){
+UnlockBuildingCommand::UnlockBuildingCommand(BuildingAccessInterface* accessSystem) : BuildingCommand(accessSystem){
 
 }
 
