@@ -11,6 +11,8 @@ private:
 	BuildingAccessInterface *accessSystem;
 
 public:
+	RestrictBuildingCommand();
+	virtual ~RestrictBuildingCommand();
 	void execute() override;
 };
 

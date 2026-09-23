@@ -10,6 +10,8 @@ private:
 	BuildingAccessInterface *accessSystem;
 
 public:
+	LockBuildingCommand();
+	virtual ~LockBuildingCommand();
 	void execute() override;
 };
 

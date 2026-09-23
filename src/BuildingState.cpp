@@ -3,7 +3,3 @@
 BuildingState::BuildingState()
 {
 }
-
-BuildingState::~BuildingState()
-{
-}
