@@ -10,3 +10,11 @@ void FacilityService::sendUpdate(const std::string&  event) {
 void FacilityService::receiveUpdate(const std::string&  event) {
 	std::cout << "[Facility] " << event << std::endl;
 }
+
+bool FacilityService::restrictedAccessPermission(){
+	return true;
+}
+
+bool FacilityService::restrictedAccessPermission(){
+	return true;
+}

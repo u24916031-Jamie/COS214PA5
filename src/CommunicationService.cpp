@@ -10,3 +10,7 @@ void CommunicationService::sendUpdate(const std::string&  event) {
 void CommunicationService::receiveUpdate(const std::string&  event) {
 	std::cout << "[Communication] " << event << std::endl;
 }
+
+bool CommunicationService::restrictedAccessPermission(){
+	return false;
+}
