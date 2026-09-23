@@ -7,9 +7,6 @@
 class RestrictBuildingCommand : public BuildingCommand
 {
 
-private:
-	BuildingAccessInterface *accessSystem;
-
 public:
 	RestrictBuildingCommand(BuildingAccessInterface* accessSystem);
 	virtual ~RestrictBuildingCommand();

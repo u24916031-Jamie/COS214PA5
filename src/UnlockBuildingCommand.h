@@ -6,9 +6,6 @@
 
 class UnlockBuildingCommand : public BuildingCommand {
 
-private:
-	BuildingAccessInterface *accessSystem;
-
 public:
 	UnlockBuildingCommand(BuildingAccessInterface* accessSystem);
 	virtual ~UnlockBuildingCommand();

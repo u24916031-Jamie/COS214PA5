@@ -5,7 +5,7 @@ class BuildingState {
 
 public:
     BuildingState();
-    virtual ~BuildingState() = 0;
+    virtual ~BuildingState() = default;
 };
 
 #endif

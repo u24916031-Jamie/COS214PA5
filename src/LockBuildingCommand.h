@@ -5,10 +5,7 @@
 #include "BuildingAccessInterface.h"
 
 class LockBuildingCommand : public BuildingCommand {
-
-private:
-	BuildingAccessInterface *accessSystem;
-
+	
 public:
 	LockBuildingCommand(BuildingAccessInterface* accessSystem);
 	virtual ~LockBuildingCommand();

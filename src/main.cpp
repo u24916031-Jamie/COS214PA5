@@ -20,7 +20,7 @@
 
 int main()
 {
-    std::cout << "=================================" << " CAMPUSGUARD "  << "=================================" << std::endl;
+    std::cout << "=================================" << " CAMPUSGUARD "  << "=================================\n" << std::endl;
 
     // Mediator Setup
     SecurityService security;
@@ -44,18 +44,21 @@ int main()
     RestrictBuildingCommand restrictCommand(&accessSystem);
 
     // Facade Setup
-    CampusGuardFacade facade(
-        &coordinator,
-        &lockCommand,
-        &unlockCommand,
-        &restrictCommand);
+    CampusGuardFacade facade(&coordinator, &lockCommand, &unlockCommand, &restrictCommand);
 
     // Observer + State Setup
     IncidentManager incidentManager(3);
 
     Incident* fire = new Incident("Fire detected in the IT Building.");
 
+    Incident* zombie = new Incident("Unauthorized access detected in Residence Hall.");
+
+    Incident* medicalEmergency = new Incident("Student collapsed outside the library.");
+
+
     incidentManager.addIncident(fire);
+    incidentManager.addIncident(zombie);
+    incidentManager.addIncident(medicalEmergency);
 
     std::cout << "\nA staff member reports smoke "<< "coming from the IT Building.\n" << std::endl;
 
@@ -81,14 +84,60 @@ int main()
 
         std::cout << "\nThe fire has been contained." << std::endl;
 
+        facade.resolveIncident();
+    }
+
+    std::cout << "\n======================================================\n"<< 
+        "First incident resolved. Dispatching next incident." << 
+        "\n======================================================\n" << std::endl;
+
+    active = incidentManager.startNextIncident();
+
+    if(active)
+    {
+        std::cout << "\nActive Incident:\n" << active->getDescription() << std::endl;
+
         active->advance();
+
+        std::cout << "\nCampusGuard initiates a building lockdown." << std::endl;
+
+        facade.coordinateBuildingLockdown();
+
+        active->advance();
+
+        std::cout << "\nThreat neutralized." << std::endl;
+
+        facade.resolveIncident();
+    }
+
+    std::cout << "\n======================================================\n"<< 
+    "Second incident resolved. Dispatching next incident."<< 
+    "\n======================================================\n" << std::endl;
+
+    active = incidentManager.startNextIncident();
+
+    if(active)
+    {
+        std::cout << "\nActive Incident:\n" << active->getDescription() << std::endl;
+
+        active->advance();
+
+        std::cout << "\nCampusGuard initiates medical response." << std::endl;
+
+        facade.coordinateMedicalResponse();
+
+        active->advance();
+
+        std::cout << "\nPatient stabilized." << std::endl;
 
         facade.resolveIncident();
     }
 
     delete fire;
+    delete zombie;
+    delete medicalEmergency;
 
-    std::cout << "\n=================================" << " INCIDENT SUCCESSFULLY " << "RESOLVED\n" << std::endl;
+    std::cout << "\n========" << " INCIDENTS SUCCESSFULLY RESOLVED " << "========" << std::endl;
 
     return 0;
 }

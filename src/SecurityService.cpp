@@ -8,5 +8,5 @@ void SecurityService::sendUpdate(const std::string&  event) {
 }
 
 void SecurityService::receiveUpdate(const std::string&  event) {
-	std::cout << "[Security]" << event << std::endl;
+	std::cout << "[Security] " << event << std::endl;
 }

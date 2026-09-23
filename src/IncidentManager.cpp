@@ -37,7 +37,7 @@ void IncidentManager::addIncident(Incident* incident) {
 	}
 	incidentQueue.push_back(incident);
 	incident->attach(this);
-	std::cout << "Incident with id "<< incident->getId() << " has been added to the queue.";
+	std::cout << "Incident with id "<< incident->getId() << " has been added to the queue."<< std::endl;
 	
 
 }
