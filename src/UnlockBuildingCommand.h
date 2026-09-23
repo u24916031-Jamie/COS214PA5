@@ -4,7 +4,7 @@
 #include "BuildingCommand.h"
 #include "BuildingAccessInterface.h"
 
-class UnlockBuildingCommand : BuildingCommand {
+class UnlockBuildingCommand : public BuildingCommand {
 
 private:
 	BuildingAccessInterface *accessSystem;
