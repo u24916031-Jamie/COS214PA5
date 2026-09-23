@@ -10,7 +10,7 @@ private:
 public:
     LockedState(/* args */);
     ~LockedState() override;
-
+    virtual bool allowAccess(char d);
 };
 
 

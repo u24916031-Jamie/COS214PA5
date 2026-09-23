@@ -13,6 +13,7 @@ public:
 	BuildingAccessInterface();
 	virtual ~BuildingAccessInterface();
 	void setState(BuildingState* x);
+	bool enter(char userPrefix);
 };
 
 #endif

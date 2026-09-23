@@ -7,3 +7,7 @@ LockedState::LockedState()
 LockedState::~LockedState()
 {
 }
+
+bool LockedState::allowAccess(char d){
+    return false;
+}
