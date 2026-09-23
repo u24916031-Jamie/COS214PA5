@@ -1,21 +1,26 @@
 #ifndef CAMPUSGUARDFACADE_H
 #define CAMPUSGUARDFACADE_H
 
-#include "CampusEmergencyCoordinator.h"
 #include "LockBuildingCommand.h"
 #include "UnlockBuildingCommand.h"
 #include "RestrictBuildingCommand.h"
+#include "SecurityService.h"
+#include "MedicalService.h"
+#include "CommunicationService.h"
 
 class CampusGuardFacade {
 
 private:
-	CampusEmergencyCoordinator* coordinator;
+	SecurityService* securityService;
+	MedicalService* medicalService;
+	CommunicationService* communicationService;
 	LockBuildingCommand* lockCommand;
     UnlockBuildingCommand* unlockCommand;
     RestrictBuildingCommand* restrictCommand;
 
 public:
-	CampusGuardFacade( CampusEmergencyCoordinator* coordinator, LockBuildingCommand* lockCommand,
+	CampusGuardFacade( SecurityService* securityService, 
+		MedicalService* medicalService, CommunicationService* communicationService, LockBuildingCommand* lockCommand,
         UnlockBuildingCommand* unlockCommand, RestrictBuildingCommand* restrictCommand);
 		
 	void coordinateMassEvacuation();
