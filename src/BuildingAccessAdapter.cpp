@@ -14,3 +14,12 @@ void BuildingAccessAdapter::restrictAccess() {
 	this->setState(new RestrictedState());
 	this->maintenanceAccess();
 }
+
+BuildingAccessAdapter::BuildingAccessAdapter() : BuildingAccessInterface(), LegacyAccessSystem(){
+
+}
+
+BuildingAccessAdapter::~BuildingAccessAdapter(){
+	delete this->state;
+	state = nullptr;
+}
