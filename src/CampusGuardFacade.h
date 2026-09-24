@@ -20,16 +20,19 @@ public:
 		MedicalService* medicalService, CommunicationService* communicationService);
 		
 	void coordinateMassEvacuation();			//evacuates every building
-	void coordinateBuildingEvacuation(int index);	//evacuates specific building
+	void coordinateBuildingEvacuation(BuildingFacade* building);	//evacuates specific building
 
 	void coordinateMassLockdown();
-	void coordinateBuildingLockdown(int index);
+	void coordinateBuildingLockdown(BuildingFacade* building);
 
-	void coordinateMedicalResponse(int index);
+	void coordinateMedicalResponse(BuildingFacade* building);
 
-	void resolveIncident(int index);
+	void resolveIncident(BuildingFacade* building);
 
 	void addBuilding(BuildingFacade* building);
+
+	void resolveMassIncident();
+
 };
 
 #endif

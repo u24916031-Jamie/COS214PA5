@@ -15,5 +15,5 @@ void BuildingAccessInterface::setState(BuildingState* x){
 }
 
 bool BuildingAccessInterface::enter(Staff* x){
-	state->allowAccess(x);
+	return state->allowAccess(x);
 }

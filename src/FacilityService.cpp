@@ -14,7 +14,3 @@ void FacilityService::receiveUpdate(const std::string&  event) {
 bool FacilityService::restrictedAccessPermission(){
 	return true;
 }
-
-bool FacilityService::restrictedAccessPermission(){
-	return true;
-}

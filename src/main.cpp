@@ -16,11 +16,14 @@
 
 #include "CampusGuardFacade.h"
 
+#include "BuildingFacade.h"
+
 #include <iostream>
 
 int main()
 {
-    std::cout << "=================================" << " CAMPUSGUARD "  << "=================================\n" << std::endl;
+    std::cout << "=================================" << " CAMPUSGUARD " << "=================================\n"
+              << std::endl;
 
     // Mediator Setup
     SecurityService security;
@@ -28,7 +31,7 @@ int main()
     FacilityService facility;
     CommunicationService communication;
 
-    CampusEmergencyCoordinator coordinator( &security, &medical, &facility, &communication);
+    CampusEmergencyCoordinator coordinator(&security, &medical, &facility, &communication);
 
     security.setMediator(&coordinator);
     medical.setMediator(&coordinator);
@@ -36,106 +39,184 @@ int main()
     communication.setMediator(&coordinator);
 
     // Adapter Setup
-    BuildingAccessAdapter accessSystem;
+    BuildingAccessAdapter ITaccessSystem;
+    BuildingAccessAdapter DHaccessSystem;
+    BuildingAccessAdapter LIBaccessSystem;
 
     // Command Setup
-    LockBuildingCommand lockCommand(&accessSystem);
-    UnlockBuildingCommand unlockCommand(&accessSystem);
-    RestrictBuildingCommand restrictCommand(&accessSystem);
+    // IT BUILDING
+    LockBuildingCommand ITlockCommand(&ITaccessSystem);
+    UnlockBuildingCommand ITunlockCommand(&ITaccessSystem);
+    RestrictBuildingCommand ITrestrictCommand(&ITaccessSystem);
+
+    // DINING HALL
+    LockBuildingCommand DHlockCommand(&DHaccessSystem);
+    UnlockBuildingCommand DHunlockCommand(&DHaccessSystem);
+    RestrictBuildingCommand DHrestrictCommand(&DHaccessSystem);
+
+    // LIBRARY
+    LockBuildingCommand LIBlockCommand(&LIBaccessSystem);
+    UnlockBuildingCommand LIBunlockCommand(&LIBaccessSystem);
+    RestrictBuildingCommand LIBrestrictCommand(&LIBaccessSystem);
+
+    BuildingFacade *IT = new BuildingFacade("IT", &ITaccessSystem, &ITlockCommand, &ITunlockCommand, &ITrestrictCommand);
+    BuildingFacade *DiningHall = new BuildingFacade("DINING HALL", &DHaccessSystem, &DHlockCommand, &DHunlockCommand, &DHrestrictCommand);
+    BuildingFacade *library = new BuildingFacade("LIBRARY", &LIBaccessSystem, &LIBlockCommand, &LIBunlockCommand, &LIBrestrictCommand);
 
     // Facade Setup
-    CampusGuardFacade facade(&security, &medical, &communication, &lockCommand, &unlockCommand, &restrictCommand);
+    CampusGuardFacade facade(&security, &medical, &communication);
+
+    facade.addBuilding(IT);
+    facade.addBuilding(DiningHall);
 
     // Observer + State Setup
     IncidentManager incidentManager(3);
 
-    Incident* fire = new Incident("Fire detected in the IT Building.");
+    Incident *fire = new Incident("Fire detected in the IT Building.", IT);
 
-    Incident* zombie = new Incident("Unauthorized access detected in Residence Hall.");
+    Incident *zombie = new Incident("Unauthorized access detected in Residence Hall.", DiningHall);
 
-    Incident* medicalEmergency = new Incident("Student collapsed outside the library.");
-
+    Incident *medicalEmergency = new Incident("Student collapsed outside the library.", library);
 
     incidentManager.addIncident(fire);
     incidentManager.addIncident(zombie);
     incidentManager.addIncident(medicalEmergency);
 
-    std::cout << "\nA staff member reports smoke "<< "coming from the IT Building.\n" << std::endl;
+    std::cout << "\nA staff member reports smoke " << "coming from the IT Building.\n"
+              << std::endl;
 
-    Incident* active = incidentManager.startNextIncident();
+    Incident *active = incidentManager.startNextIncident();
 
-    if(active)
+    if (active)
     {
-        std::cout << "\nActive Incident:\n" << active->getDescription() << std::endl;
+        std::cout << "\nActive Incident:\n"
+                  << active->getDescription() << std::endl;
 
         std::cout << "\nThe incident is now being worked on." << std::endl;
+
+        BuildingFacade *building = active->getBuildingFacade();
 
         // BeingWorkedOn -> UnderControl
         active->advance();
 
-        std::cout << "\nCampusGuard initiates a mass evacuation." << std::endl;
+        if (building == nullptr)
+        {
+            std::cout << "\nCampusGuard initiates a mass evacuation." << std::endl;
+            facade.coordinateMassEvacuation();
+        }
+        else
+        {
+            std::cout << "\nCampusGuard initiates an evacuation." << std::endl;
+            facade.coordinateBuildingEvacuation(building);
+        }
 
-        facade.coordinateMassEvacuation();
-
-        std::cout<< "\nResponders are coordinating..."<< std::endl;
+        std::cout << "\nResponders are coordinating..." << std::endl;
 
         // UnderControl -> Resolved
         active->advance();
 
         std::cout << "\nThe fire has been contained." << std::endl;
 
-        facade.resolveIncident();
+        if (building != nullptr)
+        {
+            facade.resolveIncident(building);
+        }
+        else
+        {
+            facade.resolveMassIncident();
+        }
     }
 
-    std::cout << "\n======================================================\n"<< 
-        "First incident resolved. Dispatching next incident." << 
-        "\n======================================================\n" << std::endl;
+    std::cout << "\n======================================================\n"
+              << "First incident resolved. Dispatching next incident." << "\n======================================================\n"
+              << std::endl;
 
     active = incidentManager.startNextIncident();
 
-    if(active)
+    if (active)
     {
-        std::cout << "\nActive Incident:\n" << active->getDescription() << std::endl;
+        std::cout << "\nActive Incident:\n"
+                  << active->getDescription() << std::endl;
+
+        BuildingFacade *building = active->getBuildingFacade();
 
         active->advance();
 
-        std::cout << "\nCampusGuard initiates a building lockdown." << std::endl;
+        if (building == nullptr)
+        {
+            std::cout << "\nCampusGuard initiates a mass lockdown." << std::endl;
+            facade.coordinateMassLockdown();
+        }
+        else
+        {
+            std::cout << "\nCampusGuard initiates a building lockdown." << std::endl;
+            facade.coordinateBuildingLockdown(building);
+        }
 
-        facade.coordinateBuildingLockdown();
+        CommunicationService *person = new CommunicationService();
+        std::cout << "\nCommunication Service Guy tries to enter." << std::endl;
+
+        if (building->allowStaffAccess(person))
+        {
+            std::cout << "Communication Service Guy allowed to enter." << std::endl;
+        }
+        else
+        {
+            std::cout << "Communication Service Guy not allowed to enter." << std::endl;
+        }
 
         active->advance();
 
         std::cout << "\nThreat neutralized." << std::endl;
 
-        facade.resolveIncident();
+        if (building != nullptr)
+        {
+            facade.resolveIncident(building);
+        }
+        else
+        {
+            facade.resolveMassIncident();
+        }
     }
 
-    std::cout << "\n======================================================\n"<< 
-    "Second incident resolved. Dispatching next incident."<< 
-    "\n======================================================\n" << std::endl;
+    std::cout << "\n======================================================\n"
+              << "Second incident resolved. Dispatching next incident." << "\n======================================================\n"
+              << std::endl;
 
     active = incidentManager.startNextIncident();
 
-    if(active)
+    if (active)
     {
-        std::cout << "\nActive Incident:\n" << active->getDescription() << std::endl;
+        std::cout << "\nActive Incident:\n"
+                  << active->getDescription() << std::endl;
+
+        BuildingFacade *building = active->getBuildingFacade();
 
         active->advance();
 
         std::cout << "\nCampusGuard initiates medical response." << std::endl;
 
-        facade.coordinateMedicalResponse();
-
-        active->advance();
+        facade.coordinateMedicalResponse(building);
 
         std::cout << "\nPatient stabilized." << std::endl;
 
-        facade.resolveIncident();
+        if (building != nullptr)
+        {
+            facade.resolveIncident(building);
+        }
+        else
+        {
+            facade.resolveMassIncident();
+        }
     }
 
     delete fire;
     delete zombie;
     delete medicalEmergency;
+
+    delete library;
+    delete IT;
+    delete DiningHall;
 
     std::cout << "\n========" << " INCIDENTS SUCCESSFULLY RESOLVED " << "========" << std::endl;
 

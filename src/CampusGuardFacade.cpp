@@ -21,12 +21,12 @@ void CampusGuardFacade::coordinateMassEvacuation(){
     securityService->sendUpdate("FireDetected");
 }
 			
-void CampusGuardFacade::coordinateBuildingEvacuation(int index){
-    if (index < 0 || index > static_cast<int>(building.size())){
+void CampusGuardFacade::coordinateBuildingEvacuation(BuildingFacade* building){
+    if (building==nullptr){
         return;
     }
-
-    building[index]->coordinateBuildingEvacuation();
+    
+    building->coordinateBuildingEvacuation();
 
     securityService->sendUpdate("FireDetected");
 }
@@ -41,32 +41,43 @@ void CampusGuardFacade::coordinateMassLockdown(){
     securityService->sendUpdate("IntruderDetected");
 }
 
-void CampusGuardFacade::coordinateBuildingLockdown(int index){
-    if (index < 0 || index > static_cast<int>(building.size())){
+void CampusGuardFacade::coordinateBuildingLockdown(BuildingFacade* building){
+    if (building==nullptr){
         return;
     }
-
-    building[index]->coordinateBuildingEvacuation();
+    
+    building->coordinateBuildingEvacuation();
     
     securityService->sendUpdate("IntruderDetected");
 }
 
-void CampusGuardFacade::coordinateMedicalResponse(int index){
-    if (index < 0 || index > static_cast<int>(building.size())){
+void CampusGuardFacade::coordinateMedicalResponse(BuildingFacade* building){
+    if (building==nullptr){     
         return;
     }
-
-    building[index]->coordinateMedicalResponse();
+    
+    building->coordinateMedicalResponse();
 
     medicalService->sendUpdate("MedicalEmergency");
 }
 
-void CampusGuardFacade::resolveIncident(int index){
-    if (index < 0 || index > static_cast<int>(building.size())){
+void CampusGuardFacade::resolveIncident(BuildingFacade* building){
+    if (building==nullptr){ 
+        for (auto i : this->building){
+            i->coordinateResolve();
+        }        
         return;
     }
+    
+    building->coordinateResolve();
 
-    building[index]->coordinateResolve();
+    communicationService->sendUpdate("AllClear");
+}
+
+void CampusGuardFacade::resolveMassIncident(){
+    for (auto i : building){
+        i->coordinateResolve();
+    }
 
     communicationService->sendUpdate("AllClear");
 }
