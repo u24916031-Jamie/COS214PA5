@@ -3,43 +3,76 @@
 #include <iostream>
 
 CampusGuardFacade::CampusGuardFacade( SecurityService* securityService, 
-	MedicalService* medicalService,CommunicationService* communicationService, LockBuildingCommand* lockCommand,
-    UnlockBuildingCommand* unlockCommand, RestrictBuildingCommand* restrictCommand){
+	MedicalService* medicalService,CommunicationService* communicationService){
 
     this->securityService = securityService;
     this->medicalService = medicalService;
     this->communicationService = communicationService;
-    this->lockCommand = lockCommand;
-    this->unlockCommand = unlockCommand;
-    this->restrictCommand = restrictCommand;
+
 }
 
 void CampusGuardFacade::coordinateMassEvacuation(){
     std::cout << "\n=== MASS EVACUATION INITIATED ===" << std::endl;
 
-    restrictCommand->execute();
+    for (auto i : building){
+        i->coordinateBuildingEvacuation();
+    }
+
+    securityService->sendUpdate("FireDetected");
+}
+			
+void CampusGuardFacade::coordinateBuildingEvacuation(int index){
+    if (index < 0 || index > static_cast<int>(building.size())){
+        return;
+    }
+
+    building[index]->coordinateBuildingEvacuation();
 
     securityService->sendUpdate("FireDetected");
 }
 
-void CampusGuardFacade::coordinateBuildingLockdown(){
-    std::cout << "\n=== BUILDING LOCKDOWN INITIATED ===" << std::endl;
+void CampusGuardFacade::coordinateMassLockdown(){
+    std::cout << "\n=== CAMPUS WIDE LOCKDOWN INITIATED ===" << std::endl;
 
-    lockCommand->execute();
+    for (auto i : building){
+        i->coordinateBuildingLockdown();
+    }
 
     securityService->sendUpdate("IntruderDetected");
 }
 
-void CampusGuardFacade::coordinateMedicalResponse(){
-    std::cout << "\n=== MEDICAL RESPONSE INITIATED ===" << std::endl;
+void CampusGuardFacade::coordinateBuildingLockdown(int index){
+    if (index < 0 || index > static_cast<int>(building.size())){
+        return;
+    }
+
+    building[index]->coordinateBuildingEvacuation();
+    
+    securityService->sendUpdate("IntruderDetected");
+}
+
+void CampusGuardFacade::coordinateMedicalResponse(int index){
+    if (index < 0 || index > static_cast<int>(building.size())){
+        return;
+    }
+
+    building[index]->coordinateMedicalResponse();
 
     medicalService->sendUpdate("MedicalEmergency");
 }
 
-void CampusGuardFacade::resolveIncident(){
-    std::cout << "\n=== INCIDENT RESOLVED ===" << std::endl;
+void CampusGuardFacade::resolveIncident(int index){
+    if (index < 0 || index > static_cast<int>(building.size())){
+        return;
+    }
 
-    unlockCommand->execute();
+    building[index]->coordinateResolve();
 
     communicationService->sendUpdate("AllClear");
+}
+
+void CampusGuardFacade::addBuilding(BuildingFacade* building){
+    if (building != nullptr){
+        this->building.push_back(building);
+    }
 }

@@ -1,12 +1,11 @@
 #ifndef CAMPUSGUARDFACADE_H
 #define CAMPUSGUARDFACADE_H
 
-#include "LockBuildingCommand.h"
-#include "UnlockBuildingCommand.h"
-#include "RestrictBuildingCommand.h"
+#include "BuildingFacade.h"
 #include "SecurityService.h"
 #include "MedicalService.h"
 #include "CommunicationService.h"
+#include <vector>
 
 class CampusGuardFacade {
 
@@ -14,22 +13,23 @@ private:
 	SecurityService* securityService;
 	MedicalService* medicalService;
 	CommunicationService* communicationService;
-	LockBuildingCommand* lockCommand;
-    UnlockBuildingCommand* unlockCommand;
-    RestrictBuildingCommand* restrictCommand;
+	std::vector<BuildingFacade*> building;
 
 public:
 	CampusGuardFacade( SecurityService* securityService, 
-		MedicalService* medicalService, CommunicationService* communicationService, LockBuildingCommand* lockCommand,
-        UnlockBuildingCommand* unlockCommand, RestrictBuildingCommand* restrictCommand);
+		MedicalService* medicalService, CommunicationService* communicationService);
 		
-	void coordinateMassEvacuation();
+	void coordinateMassEvacuation();			//evacuates every building
+	void coordinateBuildingEvacuation(int index);	//evacuates specific building
 
-	void coordinateBuildingLockdown();
+	void coordinateMassLockdown();
+	void coordinateBuildingLockdown(int index);
 
-	void coordinateMedicalResponse();
+	void coordinateMedicalResponse(int index);
 
-	void resolveIncident();
+	void resolveIncident(int index);
+
+	void addBuilding(BuildingFacade* building);
 };
 
 #endif
