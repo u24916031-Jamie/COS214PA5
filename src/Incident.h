@@ -5,26 +5,29 @@
 #include "Condition.h"
 #include <string>
 
+class BuildingFacade;
 
-
-
-class Incident : public Subject {
+class Incident : public Subject
+{
 
 private:
 	static int globalIncidentId;
 	int incidentId;
 	std::string description;
-	Condition* condition;
+	Condition *condition;
+	BuildingFacade *buildingFacade;
 
 public:
-	Incident(std::string description);
-	void setCondition(Condition* condition);
+	Incident(std::string description, BuildingFacade *buildingFacade = nullptr);	//omit if campus-wide (nullptr = campus-wide)
+	void setCondition(Condition *condition);
 
-	Condition* getCondition();
+	Condition *getCondition();
 
 	void advance();
 	int getId();
 	std::string getDescription();
+	BuildingFacade *getBuildingFacade();
+	bool isCampusWide();
 	void notify();
 	virtual ~Incident();
 };

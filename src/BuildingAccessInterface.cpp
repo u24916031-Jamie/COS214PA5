@@ -1,4 +1,5 @@
 #include "BuildingAccessInterface.h"
+// #include iostream
 
 BuildingAccessInterface::BuildingAccessInterface(){
 	state = new UnlockedState();
@@ -11,4 +12,8 @@ BuildingAccessInterface::~BuildingAccessInterface(){
 void BuildingAccessInterface::setState(BuildingState* x){
 	delete state;
 	state = x;
+}
+
+bool BuildingAccessInterface::enter(Staff* x){
+	return state->allowAccess(x);
 }

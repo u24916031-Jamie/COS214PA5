@@ -20,6 +20,8 @@ public:
 	virtual void sendUpdate(const std::string& event) = 0;
 
 	virtual void receiveUpdate(const std::string& event) = 0;
+
+	virtual bool restrictedAccessPermission() = 0;
 };
 
 #endif

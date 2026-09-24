@@ -10,3 +10,7 @@ void MedicalService::sendUpdate(const std::string&  event) {
 void MedicalService::receiveUpdate(const std::string&  event) {
 	std::cout << "[Medical] " << event << std::endl;
 }
+
+bool MedicalService::restrictedAccessPermission(){
+	return true;
+}

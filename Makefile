@@ -43,3 +43,10 @@ val:
 
 clean:
 	rm -f $(TARGET) $(TARGETTEST) $(ZIP_NAME)
+
+coverage:
+	cd src
+	g++ --coverage *.cpp -o $(TARGET)
+	./$(TARGET)
+	gcov -f -m -r *.gcno
+	rm -f *.o $(TARGET) *.gcda *.gcno *.gcov *.json.gz *.gcov.json

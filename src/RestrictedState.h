@@ -10,8 +10,7 @@ private:
 public:
     RestrictedState(/* args */);
     ~RestrictedState() override;
-
+    bool allowAccess(Staff *x) override;
 };
-
 
 #endif

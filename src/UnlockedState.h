@@ -10,7 +10,7 @@ private:
 public:
     UnlockedState(/* args */);
     ~UnlockedState() override;
-
+    bool allowAccess(Staff *x) override;
 };
 
 #endif

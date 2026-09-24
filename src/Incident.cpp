@@ -6,10 +6,11 @@
 
 int Incident::globalIncidentId = 1;
 
-Incident::Incident(std::string description)
+Incident::Incident(std::string description, BuildingFacade* buildingFacade)
 {
 	this->description = description;
 	this->condition = new Reported();
+	this->buildingFacade = buildingFacade;
 	this->incidentId = globalIncidentId++;
 	std::cout << description << std::endl;
 
@@ -43,6 +44,16 @@ int Incident::getId()
 std::string Incident::getDescription()
 {
     return description;
+}
+
+BuildingFacade* Incident::getBuildingFacade()
+{
+	return buildingFacade;
+}
+
+bool Incident::isCampusWide()
+{
+	return buildingFacade == nullptr;
 }
 
 
