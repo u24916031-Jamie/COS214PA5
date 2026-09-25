@@ -2,10 +2,10 @@
 #include "UnlockedState.h"
 
 void UnlockBuildingCommand::execute() {
-	accessSystem->setState(new UnlockedState());
+	accessSystem->unlock();
 }
 
-UnlockBuildingCommand::UnlockBuildingCommand(BuildingAccessInterface* accessSystem) : BuildingCommand(accessSystem){
+UnlockBuildingCommand::UnlockBuildingCommand(BuildingAccessAdapter* accessSystem) : BuildingCommand(accessSystem){
 
 }
 

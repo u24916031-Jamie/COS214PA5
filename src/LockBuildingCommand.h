@@ -7,7 +7,7 @@
 class LockBuildingCommand : public BuildingCommand {
 	
 public:
-	LockBuildingCommand(BuildingAccessInterface* accessSystem);
+	LockBuildingCommand(BuildingAccessAdapter* accessSystem);
 	virtual ~LockBuildingCommand();
 	void execute() override;
 };

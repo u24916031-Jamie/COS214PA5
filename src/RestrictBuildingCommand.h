@@ -8,7 +8,7 @@ class RestrictBuildingCommand : public BuildingCommand
 {
 
 public:
-	RestrictBuildingCommand(BuildingAccessInterface* accessSystem);
+	RestrictBuildingCommand(BuildingAccessAdapter* accessSystem);
 	virtual ~RestrictBuildingCommand();
 	void execute() override;
 };

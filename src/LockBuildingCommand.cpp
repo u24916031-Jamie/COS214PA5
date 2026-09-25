@@ -1,13 +1,13 @@
 #include "LockBuildingCommand.h"
 #include "LockedState.h"
 
-LockBuildingCommand::LockBuildingCommand(BuildingAccessInterface* accessSystem) : BuildingCommand(accessSystem)
+LockBuildingCommand::LockBuildingCommand(BuildingAccessAdapter* accessSystem) : BuildingCommand(accessSystem)
 {
 }
 
 void LockBuildingCommand::execute()
 {
-	accessSystem->setState(new LockedState());
+	accessSystem->lock();
 }
 
 LockBuildingCommand::~LockBuildingCommand()

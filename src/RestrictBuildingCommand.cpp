@@ -2,10 +2,10 @@
 #include "RestrictedState.h"
 
 void RestrictBuildingCommand::execute() {
-	accessSystem->setState(new RestrictedState());
+	accessSystem->restrictAccess();
 }
 
-RestrictBuildingCommand::RestrictBuildingCommand(BuildingAccessInterface* accessSystem) : BuildingCommand(accessSystem){
+RestrictBuildingCommand::RestrictBuildingCommand(BuildingAccessAdapter* accessSystem) : BuildingCommand(accessSystem){
 
 };
 

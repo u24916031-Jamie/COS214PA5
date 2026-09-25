@@ -7,7 +7,7 @@
 class UnlockBuildingCommand : public BuildingCommand {
 
 public:
-	UnlockBuildingCommand(BuildingAccessInterface* accessSystem);
+	UnlockBuildingCommand(BuildingAccessAdapter* accessSystem);
 	virtual ~UnlockBuildingCommand();
 	void execute() override;
 };

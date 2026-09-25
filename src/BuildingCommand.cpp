@@ -1,6 +1,6 @@
 #include "BuildingCommand.h"
 
-BuildingCommand::BuildingCommand(BuildingAccessInterface* accessSystem){
+BuildingCommand::BuildingCommand(BuildingAccessAdapter* accessSystem){
 	this->accessSystem = accessSystem;
 }
 

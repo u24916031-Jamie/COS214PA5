@@ -1,15 +1,15 @@
 #ifndef BUILDINGCOMMAND_H
 #define BUILDINGCOMMAND_H
 
-#include "BuildingAccessInterface.h"
+#include "BuildingAccessAdapter.h"
 
 class BuildingCommand {
 
 protected:
-	BuildingAccessInterface* accessSystem;
+	BuildingAccessAdapter* accessSystem;
 
 public:
-	BuildingCommand(BuildingAccessInterface* accessSystem);
+	BuildingCommand(BuildingAccessAdapter* accessSystem);
 	virtual ~BuildingCommand() = default;
 	virtual void execute() = 0;
 };
