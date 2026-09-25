@@ -165,6 +165,9 @@ int main()
             std::cout << "Communication Service Guy not allowed to enter." << std::endl;
         }
 
+        delete person;
+        person = nullptr;
+
         active->advance();
 
         std::cout << "\nThreat neutralized." << std::endl;
@@ -211,12 +214,22 @@ int main()
     }
 
     delete fire;
+    fire = nullptr;
+
     delete zombie;
+    zombie = nullptr;
+    
     delete medicalEmergency;
+    medicalEmergency = nullptr;
 
     delete library;
+    library = nullptr;
+
     delete IT;
+    IT = nullptr;
+
     delete DiningHall;
+    DiningHall = nullptr;
 
     std::cout << "\n========" << " INCIDENTS SUCCESSFULLY RESOLVED " << "========" << std::endl;
 

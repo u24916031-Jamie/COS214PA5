@@ -1,52 +1,45 @@
+CXX        := g++
+SUBDIRS    := 
+INC_FLAGS  := $(addprefix -Isrc/, $(SUBDIRS))
+CXXFLAGS   := -Wall -Wextra -std=c++11 -I. -Isrc $(INC_FLAGS)
+TARGET     := campusGuard
+TARGETTEST := $(TARGET)test
 
-CXX      := g++
-SUBDIRS  := 
-INC_FLAGS := $(addprefix -Isrc/, $(SUBDIRS))
-CXXFLAGS  := -Wall -Wextra -std=c++11 -I. -Isrc $(INC_FLAGS)
-TARGET   := campusGuard
-TARGETTEST   := $(addprefix $(TARGET), test)
+SRCS       := $(wildcard src/*.cpp) $(wildcard src/*/*.cpp)
+HEADERS    := $(wildcard src/*.h) $(wildcard src/*/*.h)
+PDFS       := 
 
+ZIP_NAME   := prac.zip
 
-SRCS := $(wildcard src/**/*.cpp) $(wildcard src/*.cpp)
-HEADERS := $(wildcard src/**/*.h) $(wildcard src/*.h)
-PDFS := 
+.PHONY: all run test runtest zip val clean coverage
 
-ZIP_NAME=prac.zip
+all: $(TARGET)
 
-
-	
-
-all: $(TARGET) $(SRCS)
-
-$(TARGET):
+$(TARGET): $(SRCS)
 	$(CXX) $(CXXFLAGS) $(SRCS) -o $@
 
 run: $(TARGET)
 	./$(TARGET)
 
 test: $(TARGETTEST)
-	$(CXX) $(CXXFLAGS) $(SRCS) -g -o $@
-$(TARGETTEST):
-	$(CXX) $(CXXFLAGS) $(SRCS) -g -o $@
-	
-runtest:
-	gdb ./$(TARGETTEST)
 
+$(TARGETTEST): $(SRCS)
+	$(CXX) -g $(CXXFLAGS) $(SRCS) -o $@
+
+runtest: $(TARGETTEST)
+	gdb ./$(TARGETTEST)
 
 zip:
 	zip -j $(ZIP_NAME) $(SRCS) $(HEADERS) $(PDFS) Makefile 
 
-
-
-val:
+val: $(TARGET)
 	valgrind --leak-check=full ./$(TARGET)
 
 clean:
 	rm -f $(TARGET) $(TARGETTEST) $(ZIP_NAME)
 
 coverage:
-	cd src
-	g++ --coverage *.cpp -o $(TARGET)
-	./$(TARGET)
-	gcov -f -m -r *.gcno
+	cd src 
+	$(CXX) --coverage *.cpp -o $(TARGET) && ./$(TARGET) 
+	gcov -f -m -r *.gcno 
 	rm -f *.o $(TARGET) *.gcda *.gcno *.gcov *.json.gz *.gcov.json
