@@ -6,7 +6,7 @@
 ## Authors
 
 - [u24916031 - Jamie King](https://github.com/u24916031-Jamie)
-- [uXXXXXXXX - Nare Maela](https://github.com/N-Githu)
+- [u24607917 - Nare Maela](https://github.com/N-Githu)
 - [u25176502 - Stephen Odhiambo](https://github.com/u25176502-commits)
 
 
