@@ -1,6 +1,6 @@
 
 # CampusGuard
-[description]
+CampusGuard is an application designed to manage incidents that may occur on a campus by dispatching teams to resolve them and changing building access levels to prevent the public from entering restricted areas.
 
 
 ## Authors
